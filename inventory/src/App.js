@@ -1,25 +1,42 @@
 import './App.css';
 import Info from "./Info.js";
+import { useState } from "react";
 function App() {
   return (
     <div className="App">
-      <Info title="Inventory Manager"/>
-      <AddItem text="tim" number={2}/>
+      <Info title="Inventory Manager" />
+      <ButtonState />
     </div>
   );
 }
 
-function AddItem(props) {
+function ButtonState() {
+  const [title, setTitle] = useState("");
+  const [count, setCount] = useState(0);
+
+  const updateTitle = () => {
+    setTitle("this is title");
+  }
+  const updateCounter = () => {
+    setCount(count + 1);
+  }
+
   return (
-    <form>
-      <label for="text-form">{props.text}</label>
-      <input type="text" id="text-form" />
-    </form>
-  );
+    <div>
+      <Data title={title} count={ count }/>
+      <button onClick={ updateTitle }>Update Title</button>
+      <button onClick={ updateCounter }>Update Counter</button>
+    </div>
+  )
 }
-//adding default props
-AddItem.defaultProps = {
-number: 1,
-text: "default"
+
+function Data(props) {
+  return (
+    <div>
+      <p>Title: {props.title}</p>
+      <p>Counter: {props.count}</p>
+    </div>
+  )
 }
+
 export default App;

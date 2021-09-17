@@ -1,42 +1,25 @@
 import './App.css';
-import Info from "./Info.js";
+import SearchBar from "./SearchBar"
 import { useState } from "react";
+
 function App() {
+
+  const [data, setData] = useState({});
+
+  const updateData = (searchParam) => {
+    setData(searchParam);
+  }
+
   return (
     <div className="App">
-      <Info title="Inventory Manager" />
-      <ButtonState />
+      <SearchBar callBack={updateData} />
+      <p>Name: {"name" in data ? data["name"] : "No Name"}</p>
+      <p>Price: {"price" in data ? data["price"] : "No Price"}</p>
+      <p>Type: {"type" in data ? data["type"] : "No Type"}</p>
+      <p>Brand: {"brand" in data ? data["brand"] : "No Brand"}</p>
     </div>
   );
 }
 
-function ButtonState() {
-  const [title, setTitle] = useState("");
-  const [count, setCount] = useState(0);
-
-  const updateTitle = () => {
-    setTitle("this is title");
-  }
-  const updateCounter = () => {
-    setCount(count + 1);
-  }
-
-  return (
-    <div>
-      <Data title={title} count={ count }/>
-      <button onClick={ updateTitle }>Update Title</button>
-      <button onClick={ updateCounter }>Update Counter</button>
-    </div>
-  )
-}
-
-function Data(props) {
-  return (
-    <div>
-      <p>Title: {props.title}</p>
-      <p>Counter: {props.count}</p>
-    </div>
-  )
-}
 
 export default App;

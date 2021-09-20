@@ -7,7 +7,7 @@ function SearchBar(props) {
     const [brand, setBrand] = useState("");
 
     const searchButtonPressed = () => {
-        props.callBack({ name: name, brand: brand, type: type, price: price});
+        props.updateSearchParams({ name: name, brand: brand, type: type, price: price});
     }
 
     return (
